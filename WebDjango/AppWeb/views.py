@@ -29,5 +29,3 @@ def cursoFormulario(request):
         return render(request, "AppWeb/inicio.html")
     
     return render(request, "AppWeb/cursoFormulario.html")
-
-    
