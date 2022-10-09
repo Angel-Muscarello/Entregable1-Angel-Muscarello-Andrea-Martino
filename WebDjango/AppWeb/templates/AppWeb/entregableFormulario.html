@@ -27,16 +27,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fromulario - Agregar Curso</title>
+    <title>Fromulario - Agregar Entregable</title>
 </head>
 <body>
-    <h1>Fromulario - Agregar Curso</h1>
-    <form action="/cursoFormulario/" method="POST">{% csrf_token %}
+    <h1>Fromulario - Agregar Entregable</h1>
+    <form action="/entregableFormulario/" method="POST">{% csrf_token %}
 
-        <p>Curso: <input type="text" name="curso"></p>
+        <p>Nombre: <input type="text" name="entregable"></p>
         
-        <p>Camada: <input type="number" name="camada"></p>
-        
+        <p>Fecha de entrega: <input type="number" name="fecha de entrega"></p>
+
         <input type="submit" value="Enviar">
         
     </form>

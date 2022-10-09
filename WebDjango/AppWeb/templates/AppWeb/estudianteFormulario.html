@@ -27,15 +27,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fromulario - Agregar Curso</title>
+    <title>Fromulario - Agregar Estudiante</title>
 </head>
 <body>
     <h1>Fromulario - Agregar Curso</h1>
-    <form action="/cursoFormulario/" method="POST">{% csrf_token %}
+    <form action="/estudianteFormulario/" method="POST">{% csrf_token %}
 
-        <p>Curso: <input type="text" name="curso"></p>
+        <p>Nombre: <input type="text" name="nombre"></p>
         
-        <p>Camada: <input type="number" name="camada"></p>
+        <p>Apellido: <input type="text" name="apellido"></p>
         
         <input type="submit" value="Enviar">
         
