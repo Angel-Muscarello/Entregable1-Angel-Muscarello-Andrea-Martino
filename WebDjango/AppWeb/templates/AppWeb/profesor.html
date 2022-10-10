@@ -28,12 +28,11 @@
 </header>
 
 <form action="" method="POST">{% csrf_token %}
-    <form action="" method="POST">{% csrf_token %}
-        <table>
-            {{ formulario.as_table }}
-        </table>
+    <table>
+         {{ formulario.as_table }}
+    </table>
         
-        <input type="submit" value="Enviar">
-    </form>
+    <input type="submit" value="Enviar">
+
 </form>
 {% endblock %}

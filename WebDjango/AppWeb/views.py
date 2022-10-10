@@ -63,7 +63,7 @@ def estudiante(request):
     else:
         mi_formulario = EstudianteForm()#formulario vacio para construir el html
         
-    return render(request, "AppWeb/estudiante.html"), {"formulario" : mi_formulario}
+    return render(request, "AppWeb/estudiante.html", {"formulario" : mi_formulario})
 
 def entregable(request):
     if  request.method == "POST":
