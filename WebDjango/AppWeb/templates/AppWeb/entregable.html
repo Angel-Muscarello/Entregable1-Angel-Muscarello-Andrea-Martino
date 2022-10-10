@@ -3,7 +3,12 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
+    
+    {% if formulario.errors %}
+    
+    <p style="color: red;">Estan mal los datos</p>
+    
+    {% endif %}
 <header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
@@ -12,7 +17,7 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">Entregable</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de entregable</p>
+                        <p class="mb-5">Espacio de Entregable</p>
                     </FONT>
                     
                 </div>
@@ -20,6 +25,17 @@
         </div>
     </div>
 </header>
+
+<form action="" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ formulario.as_table }}
+        </table>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</form>
+</html>
 
 
 {% endblock %}

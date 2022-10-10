@@ -4,6 +4,12 @@
 
 {% block contenidoQueCambia %}
 
+    {% if formulario.errors %}
+            
+    <p style="color: red;">Estan mal los datos</p>
+
+    {% endif %}
+    
 <header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
@@ -21,4 +27,13 @@
     </div>
 </header>
 
+<form action="" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ formulario.as_table }}
+        </table>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</form>
 {% endblock %}
