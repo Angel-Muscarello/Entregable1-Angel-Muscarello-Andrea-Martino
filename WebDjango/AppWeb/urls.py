@@ -13,5 +13,7 @@ urlpatterns = [
     path("entregableFormulario", views.entregableFormulario, name="Formulario-Estudiante"),
     path("estudianteFormulario", views.estudianteFormulario, name="Formulario-Entregable"),
     path("profesorFormulario", views.profesorFormulario, name="Formulario-Profesor"),
+    path("busquedaCamada", views.busquedaCadama, name="BusquedaCamada"),
+    path("buscar", views.buscar)
     
 ]    

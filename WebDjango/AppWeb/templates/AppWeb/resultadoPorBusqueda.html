@@ -1,0 +1,12 @@
+<p>Estamos busncado el: {{camada}}</p>
+
+{% if curso %}
+
+    <ul>
+        {% for cursos in curso %}
+            <li> {{curso.nombre}} </li>
+            <li> {{curso.camada}} </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}

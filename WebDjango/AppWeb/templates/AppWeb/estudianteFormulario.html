@@ -30,12 +30,14 @@
     <title>Fromulario - Agregar Estudiante</title>
 </head>
 <body>
-    <h1>Fromulario - Agregar Curso</h1>
-    <form action="/estudianteFormulario/" method="POST">{% csrf_token %}
-
-        <p>Nombre: <input type="text" name="nombre"></p>
+    <h1>Fromulario - Agregar Estudiante</h1>
+    <form action="" method="POST">{% csrf_token %}
         
-        <p>Apellido: <input type="text" name="apellido"></p>
+        <table>
+
+            {{ formulario.as_table }}
+            
+        </table>
         
         <input type="submit" value="Enviar">
         

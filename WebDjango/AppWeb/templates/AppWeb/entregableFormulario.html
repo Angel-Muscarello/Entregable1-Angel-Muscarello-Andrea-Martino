@@ -31,11 +31,13 @@
 </head>
 <body>
     <h1>Fromulario - Agregar Entregable</h1>
-    <form action="/entregableFormulario/" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
 
-        <p>Nombre: <input type="text" name="entregable"></p>
-        
-        <p>Fecha de entrega: <input type="number" name="fecha de entrega"></p>
+        <table>
+
+            {{ formulario.as_table }}
+            
+        </table>
 
         <input type="submit" value="Enviar">
         

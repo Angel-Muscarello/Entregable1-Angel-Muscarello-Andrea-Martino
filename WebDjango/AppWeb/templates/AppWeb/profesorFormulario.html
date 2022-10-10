@@ -31,13 +31,13 @@
 </head>
 <body>
     <h1>Fromulario - Agregar Profesor</h1>
-    <form action="/profesorFormulario/" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
 
-        <p>Nombre: <input type="text" name="nombre"></p>
-        
-        <p>Apellido: <input type="text" name="apellido"></p>
+        <table>
 
-        <p>Asignatura: <input type="text" name="profesion"></p>
+            {{ formulario.as_table }}
+
+        </table>
         
         <input type="submit" value="Enviar">
         
