@@ -9,10 +9,10 @@ urlpatterns = [
     path("estudiante", views.estudiante, name="Estudiante"),
     path("entregable", views.entregable, name="Entregable"),
     path("formularios", views.formularios, name="Formulario"),
-    path("busquedaCamada", views.busquedaCadama, name="BusquedaCamada"),
-    path("busquedaEstudiante", views.busquedaCadama, name="busquedaEstudiante"),
-    path("busquedaEntregable", views.busquedaCadama, name="busquedaEntregable"),
-    path("busquedaProfesor", views.busquedaCadama, name="busquedaProfesor"),
+    path("buscarCurso", views.buscarCurso, name="BusquedaCamada"),
+    path("buscarEstudiante", views.buscarEstudiante, name="busquedaEstudiante"),
+    path("buscarEntregable", views.buscarEntregable, name="busquedaEntregable"),
+    path("buscarProfesor", views.buscarProfesor, name="busquedaProfesor"),
     path("buscar", views.buscar)
     
 ]    

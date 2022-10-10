@@ -8,6 +8,7 @@ from AppWeb.forms import CursoForm, EstudianteForm, EntregableForm, ProfesorForm
 def inicio(request):
     return render(request, "AppWeb/padre.html")
 
+#Formularios de Carga
 def curso(request):    
     if  request.method == "POST":
         mi_formulario = CursoForm(request.POST)#llega la informacion del html
@@ -77,27 +78,80 @@ def entregable(request):
                 fecha_de_entrega= datos_cargados["fecha_de_entrega"],
                 entregado= datos_cargados["entregado"]
             )
-            curso.save()
+            entregable.save()
             return render(request, "AppWeb/padre.html")#vuelvo al html que quiera
     else:
         mi_formulario = EntregableForm()#formulario vacio para construir el html
         
     return render(request, "AppWeb/entregable.html", {"formulario" : mi_formulario})
 
-def busquedaCadama(request):
-    return render(request, "AppWeb/busquedaCamada.html")
+#Formularios de Busqueda
+
+def buscarCurso(request):
+    if not request.GET["camada"]:
+        respuesta = "No se enviaron datos"
+        return HttpResponse(respuesta)
+    else:
+        camada_a_bucar = request.GET["camada"]
+        curso = Curso.objects.filter(camada=camada_a_bucar)
+        contexto = {
+            "cursos_encontrados":curso, 
+            "camada":camada_a_bucar
+        }
+
+        return render(request, "AppWeb/ResultadoCurso.html", context= contexto)
+   
+
+def buscarEstudiante(request):
+    if not request.GET["apellido"]:
+        respuesta = "No se enviaron datos"
+        return HttpResponse(respuesta)
+    else:
+        estudiante_a_bucar = request.GET["apellido"]
+        estudiante = Estudiante.objects.filter(apellido=estudiante_a_bucar)
+        contexto = {
+            "estudiantes_encontrados":estudiante, 
+            "apellido":estudiante_a_bucar
+        }
+
+        return render(request, "AppWeb/ResultadoEstudiante.html", context= contexto)
+   
+   
+
+
+def buscarEntregable(request):
+    if not request.GET["nombre"]:
+        respuesta = "No se enviaron datos"
+        return HttpResponse(respuesta)
+    else:
+        entreglable_a_bucar = request.GET["nombre"]
+        entregable = Entregable.objects.filter(entregable= entreglable_a_bucar)
+        contexto = {
+            "entreglables_encontrados":entregable, 
+            "nombre":entreglable_a_bucar
+        }
+
+        return render(request, "AppWeb/ResultadoEntregable.html", context= contexto)
+   
+def buscarProfesor(request):
+    if not request.GET["apellido"]:
+        respuesta = "No se enviaron datos"
+        return HttpResponse(respuesta)
+    else:
+        profesor_a_bucar = request.GET["apellido"]
+        profesor = Profesor.objects.filter(profesor=profesor_a_bucar)
+        contexto = {
+            "profesores_encontrados":profesor, 
+            "apellido":profesor_a_bucar
+        }
+
+        return render(request, "AppWeb/ResultadoProfesor.html", context= contexto)
+   
+
 
 def buscar(request):
-    if request.GET["camada"]:
-        camada = request.GET['camada']
-        curso = Curso.objects.filter(camada__icontains=camada)
-
-        return render(request, "AppWeb/padre.html", {"curso":curso, "camada":camada})
-   
-    else:
-        respuesta = "No se enviaron datos"
-
-    return render(request, "AppWeb/padre.html", {"respuesta":respuesta})
+    respuesta = f"Estoy buscando: {request.GET['camada']}"
+    return HttpResponse(respuesta)
 
 #FORMULARIOS.............
 

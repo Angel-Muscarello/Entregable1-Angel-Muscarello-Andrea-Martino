@@ -1,0 +1,13 @@
+<p>Estamos Buscando la Estudiante: {{apellido}}</p>
+
+{% if curso_de_busqueda %}
+
+<ul>
+    {% for curso in curso_de_busqueda %}
+        <li>Nombre: {{estudiantes_encontrados.nombre}}</li>
+        <li>Apellido:{{estudiantes_encontrados.apellido}}</li>
+        <li>Emial: {{estudiantes_encontrados.email}}</li>
+    {% endfor%}
+</ul>
+
+{% endif %}
