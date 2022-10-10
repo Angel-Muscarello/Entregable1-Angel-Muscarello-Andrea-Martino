@@ -1,3 +1,9 @@
+{% extends "AppWeb/estudiante.html" %}
+
+{% load static %}
+
+{% block informacionDeEstudiante %}
+
 <p>Estamos Buscando la Estudiante: {{apellido}}</p>
 
 {% if curso_de_busqueda %}
@@ -11,3 +17,6 @@
 </ul>
 
 {% endif %}
+
+
+{% endblock %}
