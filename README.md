@@ -1,7 +1,7 @@
 <h1 align="center">Entrega Intermedia Del Proyecto Final</h1>
 
 <h2 align="center">Integrantes</h2>
-<p align="center">Andrea Martino    Angel Muscarello     Andrés Frías</p>
+<p align="center"><li>Andrea Martino    Angel Muscarello     Andrés Frías</li></p>
 
 <h3 align="center">Nota</h3>
     <p>
