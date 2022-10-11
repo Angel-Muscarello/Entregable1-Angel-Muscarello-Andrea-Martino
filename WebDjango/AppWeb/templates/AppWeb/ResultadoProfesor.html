@@ -1,13 +1,13 @@
 <p>Estamos Buscando la Profesor: {{apellido}}</p>
 
-{% if curso_de_busqueda %}
+{% if profesores_encontrados %}
 
 <ul>
-    {% for curso in curso_de_busqueda %}
-        <li>Nombre: {{profesores_encontrados.nombre}}</li>
-        <li>Apellido:{{profesores_encontrados.apellido}}</li>
-        <li>Profesion: {{profesores_encontrados.profesion}}</li>
-        <li>Emial: {{profesores_encontrados.email}}</li>
+    {% for profesor in profesores_encontrados %}
+        <li>Nombre: {{profesor.nombre}}</li>
+        <li>Apellido:{{profesor.apellido}}</li>
+        <li>Profesion: {{profesor.profesion}}</li>
+        <li>Emial: {{profesor.email}}</li>
     {% endfor%}
 </ul>
 

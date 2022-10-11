@@ -1,11 +1,11 @@
 <p>Estamos Buscando la Entregable: {{nombre}}</p>
 
-{% if curso_de_busqueda %}
+{% if entreglables_encontrados %}
 
 <ul>
-    {% for curso in curso_de_busqueda %}
-        <li>Nombre: {{entreglables_encontrados.nombre}}</li>
-        <li>fecha de entrega:{{entreglables_encontrados.fecha_de_entrega}}</li>
+    {% for entregable in entreglables_encontrados %}
+        <li>Nombre: {{entregable.nombre}}</li>
+        <li>Fecha de entrega:{{entregable.fecha_de_entrega}}</li>
     {% endfor%}
 </ul>
 

@@ -1,22 +1,14 @@
-{% extends "AppWeb/estudiante.html" %}
-
-{% load static %}
-
-{% block informacionDeEstudiante %}
-
 <p>Estamos Buscando la Estudiante: {{apellido}}</p>
 
-{% if curso_de_busqueda %}
+{% if estudiantes_encontrados %}
 
 <ul>
-    {% for curso in curso_de_busqueda %}
-        <li>Nombre: {{estudiantes_encontrados.nombre}}</li>
-        <li>Apellido:{{estudiantes_encontrados.apellido}}</li>
-        <li>Emial: {{estudiantes_encontrados.email}}</li>
+    {% for estudiante in estudiantes_encontrados %}
+        <li>Nombre: {{estudiante.nombre}}</li>
+        <li>Apellido:{{estudiante.apellido}}</li>
+        <li>Emial: {{estudiante.email}}</li>
     {% endfor%}
 </ul>
 
 {% endif %}
 
-
-{% endblock %}

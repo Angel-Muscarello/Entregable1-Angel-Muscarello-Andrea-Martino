@@ -1,0 +1,34 @@
+{% extends "AppWeb/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">Base de datos de Entregables</h1>
+                    <FONT FACE="impact" SIZE=6 COLOR="white">
+                        <p class="mb-5">Ingrese en nombre a buscar</p>
+                    </FONT>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+</header>
+<div>
+    <form action="/AppWeb/buscarEntregable" method="GET">
+    <p><input type="text" name="nombre" id="nombre"></p>
+    <input type="submit" value="buscarEntregable">
+</form>
+</div>
+
+
+
+{% endblock %}

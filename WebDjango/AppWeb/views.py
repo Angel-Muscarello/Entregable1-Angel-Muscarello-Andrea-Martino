@@ -86,6 +86,8 @@ def entregable(request):
     return render(request, "AppWeb/entregable.html", {"formulario" : mi_formulario})
 
 #Formularios de Busqueda
+def PedirDatosCurso(request):
+    return render(request, "AppWeb/PedirDatosCurso.html")
 
 def buscarCurso(request):
     if not request.GET["camada"]:
@@ -100,7 +102,10 @@ def buscarCurso(request):
         }
 
         return render(request, "AppWeb/ResultadoCurso.html", context= contexto)
+
    
+def PedirDatosEstudiante(request):
+    return render(request, "AppWeb/PedirDatosEstudiante.html")
 
 def buscarEstudiante(request):
     if not request.GET["apellido"]:
@@ -117,7 +122,8 @@ def buscarEstudiante(request):
         return render(request, "AppWeb/ResultadoEstudiante.html", context= contexto)
    
    
-
+def PedirDatosEntregable(request):
+    return render(request, "AppWeb/PedirDatosEntregable.html")
 
 def buscarEntregable(request):
     if not request.GET["nombre"]:
@@ -125,7 +131,7 @@ def buscarEntregable(request):
         return HttpResponse(respuesta)
     else:
         entreglable_a_bucar = request.GET["nombre"]
-        entregable = Entregable.objects.filter(entregable= entreglable_a_bucar)
+        entregable = Entregable.objects.filter(nombre= entreglable_a_bucar)
         contexto = {
             "entreglables_encontrados":entregable, 
             "nombre":entreglable_a_bucar
@@ -133,13 +139,17 @@ def buscarEntregable(request):
 
         return render(request, "AppWeb/ResultadoEntregable.html", context= contexto)
    
+
+def PedirDatosProfesor(request):
+    return render(request, "AppWeb/PedirDatosProfesor.html")
+
 def buscarProfesor(request):
     if not request.GET["apellido"]:
-        respuesta = "No se enviaron datos"
+        respuesta = "No enviaste datos"
         return HttpResponse(respuesta)
     else:
         profesor_a_bucar = request.GET["apellido"]
-        profesor = Profesor.objects.filter(profesor=profesor_a_bucar)
+        profesor = Profesor.objects.filter(apellido=profesor_a_bucar)
         contexto = {
             "profesores_encontrados":profesor, 
             "apellido":profesor_a_bucar

@@ -1,11 +1,11 @@
 <p>Estamos Buscando la camada: {{camada}}</p>
 
-{% if curso_de_busqueda %}
+{% if cursos_encontrados %}
 
 <ul>
-    {% for curso in curso_de_busqueda %}
-        <li>Nombre: {{cursos_encontrados.nombre}}</li>
-        <li>{{cursos_encontrados.camada}}</li>
+    {% for curso in cursos_encontrados %}
+        <li>Nombre: {{curso.nombre}}</li>
+        <li>Camada: {{curso.camada}}</li>
     {% endfor%}
 </ul>
 
