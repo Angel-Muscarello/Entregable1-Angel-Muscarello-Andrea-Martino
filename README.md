@@ -7,7 +7,7 @@
     <li align="center">Andrés Frías</li>
 </p>
 
-<h3 align="center">Nota</h3>
+<h3>Nota</h3>
     <p>
         Se te puso a disposicion un usuario admin para que puedas entrar a la solapa 'admin'
     </P>
