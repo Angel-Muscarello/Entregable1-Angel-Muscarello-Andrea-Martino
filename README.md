@@ -4,7 +4,6 @@
 <p align="center">
     <li align="center">Andrea Martino</li>
     <li align="center">Angel Muscarello</li>
-    <li align="center">Andrés Frías</li>
 </p>
 
 <h3>Nota</h3>
