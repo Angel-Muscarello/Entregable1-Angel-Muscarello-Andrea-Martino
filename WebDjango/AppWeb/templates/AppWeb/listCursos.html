@@ -1,0 +1,39 @@
+{% extends "AppWeb/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    
+    {% if formulario.errors %}
+    
+    <p style="color: red;">Estan mal los datos</p>
+
+    {% endif %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">                       
+                    <h1 class="mb-5">Cursos</h1>
+                </div>
+            </div>
+        </div>
+    </div>    
+</header>
+<ul>
+    {% for curso in object_list %}
+    <li>
+        <p>Nombre: {{curso.nombre}}</p>
+        <p>Camada: {{curso.camada}}</p>
+        <p>
+            <a href="{% url 'detailCurso' curso.id %}">Ver</a>
+            <a href="{% url 'cursoEditar' curso.id %}">Editar</a>
+            <a href="{% url 'cursoDelete' curso.id %}">Borrar</a>
+        </p>
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

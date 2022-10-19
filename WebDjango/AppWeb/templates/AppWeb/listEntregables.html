@@ -14,27 +14,26 @@
         <div class="row justify-content-center">
             <div class="col-xl-6">
                 <div class="text-center text-white">
-                    <!-- Page heading-->
                     <h1 class="mb-5">Entregable</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Entregable</p>
-                    </FONT>
-                    
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<form action="" method="POST">{% csrf_token %}
-    <table>
-         {{ formulario.as_table }}
-         
-    </table>
-        
-    <input type="submit" value="Enviar">
-    
-</form>
+<ul>
+    {% for entregable in object_list %}
+    <li>
+        <p>Nombre: {{entregable.nombre}}</p>
+        <p>Fecha: {{entregable.fecha_de_entrega}}</p>
+        <p>
+            <a href="{% url 'detailEstudiante' entregable.id %}">Ver</a>
+            <a href="{% url 'entregableEditar' entregable.id %}">Editar</a>
+            <a href="{% url 'entregableDelete' entregable.id %}">Borrar</a>
+        </p>        
+ 
+    </li>
+    {% endfor %}
+</ul>
 
 
 {% endblock %}

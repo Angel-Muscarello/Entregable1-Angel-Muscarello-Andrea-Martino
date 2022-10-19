@@ -3,13 +3,12 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
-    {% if formulario.errors %}
-            
-    <p style="color: red;">Estan mal los datos</p>
-
-    {% endif %}
     
+    {% if formulario.errors %}
+    
+    <p style="color: red;">Estan mal los datos</p>
+    
+    {% endif %}
 <header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
@@ -26,13 +25,19 @@
         </div>
     </div>
 </header>
-
-<form action="" method="POST">{% csrf_token %}
-    <table>
-         {{ formulario.as_table }}
-    </table>
-        
-    <input type="submit" value="Enviar">
-
-</form>
+<ul>
+    {% for profersor in object_list %}
+    <li>
+        <p>Nombre: {{profersor.nombre}}</p>
+        <p>Apellido: {{profersor.apellido}}</p>
+        <p>Profesion: {{profersor.profesion}}</p>
+        <p>Email: {{profersor.email}}</p>
+        <p>
+            <a href="{% url 'detailProfesor' profersor.id %}">Ver</a>
+            <a href="{% url 'profesorEditar' profersor.id %}">Editar</a>
+            <a href="{% url 'profesorDelete' profersor.id %}">Borrar</a>
+        </p>   
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}

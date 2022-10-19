@@ -22,12 +22,13 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'Padre' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'Curso' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'Entregable' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'Estudiante' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'Profesor' %}">Profesores</a>
+                <a class="navbar-brand" href="{% url 'listCurso' %}">Cursos</a>
+                <a class="navbar-brand" href="{% url 'listEntregable' %}">Entregables</a>
+                <a class="navbar-brand" href="{% url 'listEstudiante' %}">Estudiantes</a>
+                <a class="navbar-brand" href="{% url 'listProfesor' %}">Profesores</a>
                 <a class="narbar-brand" href="{% url 'Formulario' %}">Formularios</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
             </div>
         </nav>
 
@@ -72,13 +73,6 @@
                             <p class="lead mb-0">Colaborador del entregable</p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
-                            <h3>Andrés Frías</h3>
-                            <p class="lead mb-0">Colaborador del entregable</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -96,13 +90,6 @@
                     <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                     <div class="col-lg-6 my-auto showcase-text">
                         <h2>Angel Muscarello</h2>
-                        <p class="lead mb-0">Colaboradora del entregable</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h3>Andrés Frías</h3>
                         <p class="lead mb-0">Colaboradora del entregable</p>
                     </div>
                 </div>

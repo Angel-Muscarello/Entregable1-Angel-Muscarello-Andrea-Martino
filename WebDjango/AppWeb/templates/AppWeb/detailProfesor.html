@@ -25,21 +25,9 @@
         </div>
     </div>
 </header>
-{% if not objets in profesores_encontrados %}
-    <p>No se encontraron resultados</p>
-{% endif %}
-
-{% if profesores_encontrados %}
-
-<ul>
-    {% for profesor in profesores_encontrados %}
-        <li>Nombre: {{profesor.nombre}}</li>
-        <li>Apellido:{{profesor.apellido}}</li>
-        <li>Profesion: {{profesor.profesion}}</li>
-        <li>Emial: {{profesor.email}}</li>
-    {% endfor%}
-</ul>
-
-{% endif %}
+<p>Nombre: <i>{{ profesor.nombre}}</i></p>
+<p>Apellido: <i>{{ profesor.apellido}}</i></p>
+<p>Profesion: <i>{{ profesor.profesion}}</i></p>
+<p>Email: <i>{{ profesor.email}}</i></p>
 
 {% endblock %}

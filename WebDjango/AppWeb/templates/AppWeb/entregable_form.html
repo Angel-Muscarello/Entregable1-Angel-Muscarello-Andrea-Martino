@@ -15,9 +15,9 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     <!-- Page heading-->
-                    <h1 class="mb-5">Profesor</h1>
+                    <h1 class="mb-5">Entregable</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Profesor</p>
+                        <p class="mb-5">Espacio de Entregable</p>
                     </FONT>
                     
                 </div>
@@ -25,21 +25,21 @@
         </div>
     </div>
 </header>
-{% if not objets in profesores_encontrados %}
-    <p>No se encontraron resultados</p>
-{% endif %}
-
-{% if profesores_encontrados %}
-
-<ul>
-    {% for profesor in profesores_encontrados %}
-        <li>Nombre: {{profesor.nombre}}</li>
-        <li>Apellido:{{profesor.apellido}}</li>
-        <li>Profesion: {{profesor.profesion}}</li>
-        <li>Emial: {{profesor.email}}</li>
-    {% endfor%}
-</ul>
-
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Entregable</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input type="submit" value="Enviar" />
+    </form>
+</body>
+</html>
 
 {% endblock %}

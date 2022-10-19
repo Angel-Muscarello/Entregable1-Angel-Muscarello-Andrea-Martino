@@ -1,91 +1,15 @@
-import email
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic.detail import DetailView
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AppWeb.models import Curso, Entregable, Estudiante, Profesor
-from AppWeb.forms import CursoForm, EstudianteForm, EntregableForm, ProfesorForm
+from django.contrib.auth.views import LoginView, LogoutView
 # Create your views here.
 
 def inicio(request):
     return render(request, "AppWeb/padre.html")
 
-#Formularios de Carga
-def curso(request):    
-    if  request.method == "POST":
-        mi_formulario = CursoForm(request.POST)#llega la informacion del html
-        print(mi_formulario)
-        if mi_formulario.is_valid:#corrborar si pasa la validacion de django
-            datos_cargados = mi_formulario.cleaned_data
-
-            curso = Curso(
-                nombre= datos_cargados["nombre"], 
-                camada= datos_cargados["camada"],
-            )
-            curso.save()
-            return render(request, "AppWeb/padre.html")#vuelvo al html que quiera
-    else:
-        mi_formulario = CursoForm()#formulario vacio para construir el html
-        
-    return render(request, "AppWeb/curso.html", {"formulario" : mi_formulario})
-
-
-def profesor(request):
-    if  request.method == "POST":
-        mi_formulario = ProfesorForm(request.POST)#llega la informacion del html
-        print(mi_formulario)
-        if mi_formulario.is_valid:#corrborar si pasa la validacion de django
-            datos_cargados = mi_formulario.cleaned_data
-
-            profesor = Profesor(
-                nombre= datos_cargados["nombre"], 
-                apellido= datos_cargados["apellido"],
-                profesion= datos_cargados["profesion"],
-                email= datos_cargados["email"]
-            )
-            profesor.save()
-            return render(request, "AppWeb/padre.html")#vuelvo al html que quiera
-    else:
-        mi_formulario = ProfesorForm()#formulario vacio para construir el html
-    return render(request, "AppWeb/profesor.html", {"formulario" : mi_formulario})
-
-def estudiante(request):
-    if  request.method == "POST":
-        mi_formulario = EstudianteForm(request.POST)#llega la informacion del html
-        print(mi_formulario)
-        if mi_formulario.is_valid:#corrborar si pasa la validacion de django
-            datos_cargados = mi_formulario.cleaned_data
-
-            estudiante = Estudiante(
-                nombre= datos_cargados["nombre"], 
-                apellido= datos_cargados["apellido"],
-                email= datos_cargados["email"]
-            )
-            estudiante.save()
-            return render(request, "AppWeb/padre.html")#vuelvo al html que quiera
-    else:
-        mi_formulario = EstudianteForm()#formulario vacio para construir el html
-        
-    return render(request, "AppWeb/estudiante.html", {"formulario" : mi_formulario})
-
-def entregable(request):
-    if  request.method == "POST":
-        mi_formulario = EntregableForm(request.POST)#llega la informacion del html
-        print(mi_formulario)
-        if mi_formulario.is_valid:#corrborar si pasa la validacion de django
-            datos_cargados = mi_formulario.cleaned_data
-
-            entregable = Entregable(
-                nombre= datos_cargados["nombre"], 
-                fecha_de_entrega= datos_cargados["fecha_de_entrega"],
-                entregado= datos_cargados["entregado"]
-            )
-            entregable.save()
-            return render(request, "AppWeb/padre.html")#vuelvo al html que quiera
-    else:
-        mi_formulario = EntregableForm()#formulario vacio para construir el html
-        
-    return render(request, "AppWeb/entregable.html", {"formulario" : mi_formulario})
-
-#Formularios de Busqueda
 def PedirDatosCurso(request):
     return render(request, "AppWeb/PedirDatosCurso.html")
 
@@ -157,15 +81,119 @@ def buscarProfesor(request):
 
         return render(request, "AppWeb/ResultadoProfesor.html", context= contexto)
    
-
-
-def buscar(request):
-    respuesta = f"Estoy buscando: {request.GET['camada']}"
-    return HttpResponse(respuesta)
-
-#FORMULARIOS.............
-
 def formularios(request):
     return render(request, "AppWeb/formularios.html")
+
+#CLASS LISTVIEW
+#CLASS IN VIEWS
+
+class ListCurso(ListView):
+    model = Curso
+    template_name = "AppWeb/listCursos.html"
+
+class ListEntregable(ListView):
+    model = Entregable
+    template_name = "AppWeb/listEntregables.html"
+
+class ListEstudiante(ListView):
+    model = Estudiante
+    template_name = "AppWeb/listEstudiantes.html"
+
+class ListProfesor(ListView):
+    model = Profesor
+    template_name = "AppWeb/listProfesores.html"
+
+#CLASS DETALLE in views
+
+class DetailCurso(DetailView):
+    model = Curso
+    template_name = "AppWeb/detialCurso.html"
+
+class DetailEntregable(DetailView):
+    model = Entregable
+    template_name = "AppWeb/detailEntregable.html"
+
+class DetailEstudiante(DetailView):
+    model = Estudiante
+    template_name = "AppWeb/detailEstudiante.html"
+
+class DetailProfesor(DetailView):
+    model = Profesor
+    template_name = "AppWeb/detailProfesor.html"
+
+#CLASS CREATE in views
+
+class CreateCurso(CreateView):
+    model = Curso
+    success_url = "/AppWeb/listCurso"
+    fields = ["nombre", "camada"]
+
+class CreateEntregable(CreateView):
+    model = Entregable
+    success_url = "/AppWeb/listEntregable"
+    fields = ["nombre", "fecha_de_entrega"]
+
+class CreateEstudiante(CreateView):
+    model = Estudiante
+    success_url = "/AppWeb/listEstudiante"
+    fields = ["nombre", "apellido", "email"]
+
+class CreateProfesor(CreateView):
+    model = Profesor
+    success_url = "/AppWeb/listProfesor"
+    fields = ["nombre", "apellido", "profesion", "email"]
+
+
+#Class UPDATE
+
+class UpdateCurso(UpdateView):
+    model = Curso
+    success_url = "/AppWeb/listCurso"
+    fields = ["nombre", "camada"]
+
+class UpdateEntregable(UpdateView):
+    model = Entregable
+    success_url = "/AppWeb/listEntregable"
+    fields = ["nombre", "fecha_de_entrega"]
+
+class UpdateEstudiante(UpdateView):
+    model = Estudiante
+    success_url = "/AppWeb/listEstudiante"
+    fields = ["nombre", "apellido", "email"]
+
+class UpdateProfesor(UpdateView):
+    model = Profesor
+    success_url = "/AppWeb/listProfesor"
+    fields = ["nombre", "apellido", "profesion", "email"]
+
+#CLASS DELETE
+
+class DeleteCurso(DeleteView):
+    model = Curso
+    success_url = "/AppWeb/listCurso"
+    fields = ["nombre", "camada"]
+
+class DeleteEntregable(DeleteView):
+    model = Entregable
+    success_url = "/AppWeb/listEntregable"
+
+class DeleteEstudiante(DeleteView):
+    model = Estudiante
+    success_url = "/AppWeb/listEstudiante"
+
+class DeleteProfesor(DeleteView):
+    model = Profesor
+    success_url = "/AppWeb/listProfesor"
+
+#---LOGIN---LOGOUT
+class MyLogin(LoginView):
+    template_name = "AppWeb/login.html"
+
+class MyLogout(LogoutView):
+    template_name = "AppWeb/logout.html"
+    
+
+
+
 
 

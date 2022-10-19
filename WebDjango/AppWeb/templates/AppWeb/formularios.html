@@ -25,12 +25,27 @@
 <head>
     <div>
         <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
+            <p align="center">
+                <h1 >Buscar Datos</h1>
+            </p>
+            <div text-align="center" class="container">
                 <a class="navbar-brand" href="{% url 'DatosdeCursos' %}">BD-Curso</a>
                 <a class="navbar-brand" href="{% url 'DatosdeEstudiantes' %}">BD-Estudiante</a>
                 <a class="navbar-brand" href="{% url 'DatosdeEntregables' %}">BD-Entregable</a>
                 <a class="navbar-brand" href="{% url 'DatosdeProfesores' %}">BD-Profesor</a>
-                
+            </div>
+        </nav>
+    </div>
+    <div>
+        <nav class="navbar navbar-light bg-light static-top">
+            <p align="center">
+                <h1 >Cargar Datos</h1>
+            </p>
+            <div text-align="center" class="container">
+                <a class="navbar-brand" href="{% url 'cursoNuevo' %}">Curso</a>
+                <a class="navbar-brand" href="{% url 'entregableNuevo' %}">Entregable</a>
+                <a class="navbar-brand" href="{% url 'estudianteNuevo' %}">Estudiante</a>
+                <a class="navbar-brand" href="{% url 'profesorNuevo' %}">Profesor</a>
             </div>
         </nav>
     </div>
@@ -38,3 +53,4 @@
 
 </head>
 {% endblock %}
+

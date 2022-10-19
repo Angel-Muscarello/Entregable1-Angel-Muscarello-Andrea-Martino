@@ -1,0 +1,32 @@
+{% extends "AppWeb/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    
+    {% if formulario.errors %}
+    
+    <p style="color: red;">Estan mal los datos</p>
+
+    {% endif %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">                       
+                    <h1 class="mb-5">Iniciar Sesion</h1>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button type="submit">Iniciar Sesion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+</header>
+
+
+
+
+{% endblock %}

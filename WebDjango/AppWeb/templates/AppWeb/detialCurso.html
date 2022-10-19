@@ -17,7 +17,7 @@
                         <!-- Page heading-->
                         <h1 class="mb-5">Curos</h1>
                         <FONT FACE="impact" SIZE=6 COLOR="white">
-                            <p class="mb-5">Espacio destinado a los cursos</p>
+                            <p class="mb-5">Listados de cursos</p>
                         </FONT>
 
                     </div>
@@ -26,14 +26,7 @@
         </div>
     </header>
 
-    <form action="" method="POST">{% csrf_token %}
-        <table>
-             {{ formulario.as_table }}
-        </table>
-            
-        <input type="submit" value="Enviar">
-        
-    </form>
+<p>Nombre: <i>{{ curso.nombre}}</i></p>
+<p>Camada: <i>{{ curso.camada}}</i></p>
 
 {% endblock %}
-

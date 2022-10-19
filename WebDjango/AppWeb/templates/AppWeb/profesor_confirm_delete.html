@@ -3,22 +3,21 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
+    
     {% if formulario.errors %}
-        
+    
     <p style="color: red;">Estan mal los datos</p>
     
     {% endif %}
-
 <header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     <!-- Page heading-->
-                    <h1 class="mb-5">Estudiante</h1>
+                    <h1 class="mb-5">Profesor</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Estudiante</p>
+                        <p class="mb-5">Espacio de Profesor</p>
                     </FONT>
                     
                 </div>
@@ -26,21 +25,20 @@
         </div>
     </div>
 </header>
-
-<form action="" method="POST">{% csrf_token %}
-    <table>
-         {{ formulario.as_table }}
-    </table>
-        
-    <input type="submit" value="Enviar">
-    
-</form>
-
-    {% block informacionDeEstudiante %}
-
-
-
-    {% endblock %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrar Profesor</title>
+</head>
+<body>
+    <form method="post">{% csrf_token %}
+        Quieres borrar el profesor: {{ object }}?
+        <input type="submit" value="Borrar" />
+    </form>
+</body>
+</html>
 
 {% endblock %}
