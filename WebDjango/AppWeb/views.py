@@ -1,3 +1,4 @@
+import email
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
@@ -5,6 +6,9 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AppWeb.models import Curso, Entregable, Estudiante, Profesor
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
+
+
 # Create your views here.
 
 def inicio(request):
@@ -83,6 +87,21 @@ def buscarProfesor(request):
    
 def formularios(request):
     return render(request, "AppWeb/formularios.html")
+
+#--REGISTER
+
+def register(request):
+    if request.method =="POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            form.save()
+            return render(request, "AppWeb/padre.html", {"form":form})
+    else:
+        form = UserCreationForm()
+    
+    return render(request, "AppWeb/register.html", {"form":form})
+
 
 #CLASS LISTVIEW
 #CLASS IN VIEWS
@@ -185,7 +204,7 @@ class DeleteProfesor(DeleteView):
     model = Profesor
     success_url = "/AppWeb/listProfesor"
 
-#---LOGIN---LOGOUT
+#---LOGIN---LOGOUT---
 class MyLogin(LoginView):
     template_name = "AppWeb/login.html"
 
