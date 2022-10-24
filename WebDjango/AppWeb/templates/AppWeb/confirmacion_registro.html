@@ -1,0 +1,25 @@
+{% extends "AppWeb/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">                       
+                    <h1 class="mb-5">Registro Exitoso</h1>
+                    <p>Se requiere iniciar sesion</p>
+                    <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+</header>
+
+
+
+
+
+{% endblock %}

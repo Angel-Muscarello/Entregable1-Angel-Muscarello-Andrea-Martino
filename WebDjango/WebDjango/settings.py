@@ -129,3 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Login
 LOGIN_REDIRECT_URL = '/AppWeb/'
+
+LOGIN_URL =  '/AppWeb/login'
