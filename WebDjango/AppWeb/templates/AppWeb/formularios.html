@@ -12,7 +12,7 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">Formularios</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">A continuacion podras cargar los distintos formularios</p>
+                        <p class="mb-5">A continuacion podras cargar o buscar datos</p>
                     </FONT>
                     
                 </div>
@@ -29,10 +29,10 @@
                 <h1 >Buscar Datos</h1>
             </p>
             <div text-align="center" class="container">
-                <a class="navbar-brand" href="{% url 'DatosdeCursos' %}">BD-Curso</a>
-                <a class="navbar-brand" href="{% url 'DatosdeEstudiantes' %}">BD-Estudiante</a>
-                <a class="navbar-brand" href="{% url 'DatosdeEntregables' %}">BD-Entregable</a>
-                <a class="navbar-brand" href="{% url 'DatosdeProfesores' %}">BD-Profesor</a>
+                <a class="btn btn-primary" href="{% url 'DatosdeCursos' %}">BD-Curso</a>
+                <a class="btn btn-primary" href="{% url 'DatosdeEstudiantes' %}">BD-Estudiante</a>
+                <a class="btn btn-primary" href="{% url 'DatosdeEntregables' %}">BD-Entregable</a>
+                <a class="btn btn-primary" href="{% url 'DatosdeProfesores' %}">BD-Profesor</a>
             </div>
         </nav>
     </div>
@@ -42,10 +42,10 @@
                 <h1 >Cargar Datos</h1>
             </p>
             <div text-align="center" class="container">
-                <a class="navbar-brand" href="{% url 'cursoNuevo' %}">Curso</a>
-                <a class="navbar-brand" href="{% url 'entregableNuevo' %}">Entregable</a>
-                <a class="navbar-brand" href="{% url 'estudianteNuevo' %}">Estudiante</a>
-                <a class="navbar-brand" href="{% url 'profesorNuevo' %}">Profesor</a>
+                <a class="btn btn-primary" href="{% url 'cursoNuevo' %}">Curso</a>
+                <a class="btn btn-primary" href="{% url 'entregableNuevo' %}">Entregable</a>
+                <a class="btn btn-primary" href="{% url 'estudianteNuevo' %}">Estudiante</a>
+                <a class="btn btn-primary" href="{% url 'profesorNuevo' %}">Profesor</a>
             </div>
         </nav>
     </div>

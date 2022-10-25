@@ -6,27 +6,25 @@
     
     {% if formulario.errors %}
     
-    <p style="color: red;">Estan mal los datos</p>
-    
+        <p style="color: red;">Estan mal los datos</p>
     {% endif %}
-<header class="masthead">
-    <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-xl-6">
-                <div class="text-center text-white">
-                    <!-- Page heading-->
-                    <h1 class="mb-5">Entregable</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Entregable</p>
-                    </FONT>
-                    
+    
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h1 class="mb-5">Entregable</h1>
+                        <h4>Nombre: <i>{{ entregable.nombre}}</h4>
+                        <h4>Fecha: <i>{{ entregable.fecha_de_entrega}}</h4>
+                        
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
-<p>Nombre: <i>{{ entregable.nombre}}</i></p>
-<p>Fecha: <i>{{ entregable.fecha_de_entrega}}</i></p>
+    </header>
+
 
 
 {% endblock %}

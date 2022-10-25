@@ -7,7 +7,7 @@
     {% if formulario.errors %}
     
     <p style="color: red;">Estan mal los datos</p>
-    
+
     {% endif %}
 <header class="masthead">
     <div class="container position-relative">
@@ -26,7 +26,7 @@
         <p>Nombre: {{entregable.nombre}}</p>
         <p>Fecha: {{entregable.fecha_de_entrega}}</p>
         <p>
-            <a href="{% url 'detailEstudiante' entregable.id %}">Ver</a>
+            <a href="{% url 'detailEntregable' entregable.id %}">Ver</a>
             <a href="{% url 'entregableEditar' entregable.id %}">Editar</a>
             <a href="{% url 'entregableDelete' entregable.id %}">Borrar</a>
         </p>        

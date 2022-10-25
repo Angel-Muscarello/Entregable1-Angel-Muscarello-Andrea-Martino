@@ -14,6 +14,10 @@
                     <FONT FACE="impact" SIZE=6 COLOR="white">
                         <p class="mb-5">Ingrese el apellido a buscar</p>
                     </FONT>
+                    <form action="/AppWeb/buscarProfesor" method="GET">
+                        <p><input type="text" name="apellido" id="apellido"></p>
+                        <input class="btn btn-primary" type="submit" value="Buscar">
+                    </form>
                     
                 </div>
             </div>
@@ -22,9 +26,5 @@
    
 
 </header>
-<form action="/AppWeb/buscarProfesor" method="GET">
-    <p><input type="text" name="apellido" id="apellido"></p>
-    <input type="submit" value="buscarProfesor">
-</form>
 
 {% endblock %}

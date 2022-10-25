@@ -12,8 +12,12 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">Base de datos de Estudiantes</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Ingrese en apellido a buscar</p>
+                        <p class="mb-5">Ingrese el apellido a buscar</p>
                     </FONT>
+                    <form action="/AppWeb/buscarEstudiante" method="GET">
+                        <p><input type="text" name="apellido" id="apellido"></p>
+                        <input class="btn btn-primary" type="submit" value="Buscar">
+                    </form>
                     
                 </div>
             </div>
@@ -23,9 +27,5 @@
 
 </header>
 
-<form action="/AppWeb/buscarEstudiante" method="GET">
-    <p><input type="text" name="apellido" id="apellido"></p>
-    <input type="submit" value="buscarEstudiante">
-</form>
 
 {% endblock %}

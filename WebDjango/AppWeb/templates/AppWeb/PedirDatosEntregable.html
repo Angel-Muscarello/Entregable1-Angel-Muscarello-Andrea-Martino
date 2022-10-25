@@ -12,8 +12,12 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">Base de datos de Entregables</h1>
                     <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Ingrese en nombre a buscar</p>
+                        <p class="mb-5">Ingrese el nombre a buscar</p>
                     </FONT>
+                    <form action="/AppWeb/buscarEntregable" method="GET">
+                        <p><input type="text" name="nombre" id="nombre"></p>
+                        <input class="btn btn-primary"  type="submit" value="Buscar">
+                    </form>
                     
                 </div>
             </div>
@@ -23,10 +27,6 @@
 
 </header>
 <div>
-    <form action="/AppWeb/buscarEntregable" method="GET">
-    <p><input type="text" name="nombre" id="nombre"></p>
-    <input type="submit" value="buscarEntregable">
-</form>
 </div>
 
 

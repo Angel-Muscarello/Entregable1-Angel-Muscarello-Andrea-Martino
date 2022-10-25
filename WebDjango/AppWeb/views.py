@@ -1,4 +1,3 @@
-import email
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
@@ -7,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AppWeb.models import Curso, Entregable, Estudiante, Profesor
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
+from AppWeb.forms import UserEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin #Permiten restrigir las views (clases) a no usuarios...
 from django.contrib.auth.decorators import login_required #Permiten restrigir las views (funciones) a no usuarios...
 
@@ -97,7 +97,6 @@ def formularios(request):
     return render(request, "AppWeb/formularios.html")
 
 #--REGISTER
-
 def register(request):
     if request.method =="POST":
         form = UserCreationForm(request.POST)
@@ -109,6 +108,29 @@ def register(request):
         form = UserCreationForm()
     
     return render(request, "AppWeb/register.html", {"form":form})
+
+
+#--EDIT-PROFILE
+@login_required   
+def editarPerfil(request):
+    user = request.user
+    
+    if request.method != "POST":
+        formulario =  UserEditForm(initial={"email":user.email})
+    
+    else:
+        formulario =  UserEditForm(request.POST)
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            user.email = informacion["email"]
+            user.last_name = informacion["last_name"]
+            user.first_name = informacion["first_name"]
+            user.password1 = informacion["password1"]
+            user.password2 = informacion["password2"]
+            user.save()
+            return render(request, "AppWeb/padre.html")
+
+    return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user})
 
 
 #CLASS LISTVIEW

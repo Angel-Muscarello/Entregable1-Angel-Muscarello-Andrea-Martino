@@ -6,8 +6,7 @@
     
     {% if formulario.errors %}
     
-    <p style="color: red;">Estan mal los datos</p>
-    
+        <p style="color: red;">Estan mal los datos</p>
     {% endif %}
 <header class="masthead">
     <div class="container position-relative">
@@ -16,16 +15,16 @@
                 <div class="text-center text-white">
                     <!-- Page heading-->
                     <h1 class="mb-5">Estudiante</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Estudiante</p>
-                    </FONT>
-                    
+                    <h4>Nombre: <i>{{ estudiante.nombre}}</h4>
+                    <h4>Apellido: <i>{{ estudiante.apellido}}</h4>
+                    <h4>Email: <i>{{ estudiante.email}}</h4>
+
+                        
                 </div>
             </div>
         </div>
     </div>
 </header>
-<p>Nombre: <i>{{ estudiante.nombre}}</i></p>
-<p>Apellido: <i>{{ estudiante.apellido}}</i></p>
-<p>Email: <i>{{ estudiante.email}}</i></p>
+
+
 {% endblock %}

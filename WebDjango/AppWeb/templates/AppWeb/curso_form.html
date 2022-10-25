@@ -16,24 +16,15 @@
                     <div class="text-center text-white">
                         <!-- Page heading-->
                         <h1 class="mb-5">Curso</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <input class="btn btn-primary" type="submit" value="Guardar" />
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p}}
-            <input type="submit" value="Guardar" />
-        </form>
-    </body>
-    </html>
+
 {% endblock %}

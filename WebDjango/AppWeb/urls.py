@@ -22,6 +22,10 @@ urlpatterns = [
 
 #--REGISTER
   path("register", register, name="Register"),
+
+#--EDIT-PROFILE
+  path("editarPerfil", editarPerfil, name="EditarPerfil"),
+  
 #----LOGIN---LOGOUT,  AUTHENTICATE
   path("login", MyLogin.as_view(), name="Login"),
   path("logout", MyLogout.as_view(), name="Logout"),
@@ -33,10 +37,10 @@ urlpatterns = [
   path("listProfesor", ListProfesor.as_view(), name="listProfesor"),
 
 #detailClass
-  path(r'^(?P<pk>\d+)$', DetailCurso.as_view(), name="detailCurso"),
-  path(r'^(?P<pk>\d+)$', DetailEntregable.as_view(), name="detailEntregable"),
-  path(r'^(?P<pk>\d+)$', DetailEstudiante.as_view(), name="detailEstudiante"),
-  path(r'^(?P<pk>\d+)$', DetailProfesor.as_view(), name="detailProfesor"),
+  path(r'^detailCurso/(?P<pk>\d+)$', DetailCurso.as_view(), name="detailCurso"),
+  path(r'^detailEntregable/(?P<pk>\d+)$', DetailEntregable.as_view(), name="detailEntregable"),
+  path(r'^detailEstudiante/(?P<pk>\d+)$', DetailEstudiante.as_view(), name="detailEstudiante"),
+  path(r'^detailProfesor/(?P<pk>\d+)$', DetailProfesor.as_view(), name="detailProfesor"),
 
 #createClass
   path("cursoCreate", CreateCurso.as_view(), name="cursoNuevo"),

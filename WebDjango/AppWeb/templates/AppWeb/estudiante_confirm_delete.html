@@ -15,30 +15,17 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     <!-- Page heading-->
-                    <h1 class="mb-5">Profesor</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Profesor</p>
-                    </FONT>
-                    
+                    <h1 class="mb-5">Nombre: {{ object.nombre}}</h1>
+                    <h1 class="mb-5">Apellido: {{ object.apellido}}</h1>
+                
+                    <form method="post">{% csrf_token %}
+                        Quieres borrar al estudiante?
+                        <input class="btn btn-primary" type="submit" value="Borrar" />
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar Estudiante</title>
-</head>
-<body>
-    <form method="post">{% csrf_token %}
-        Quieres borrar el estudiante: {{ object }}?
-        <input type="submit" value="Borrar" />
-    </form>
-</body>
-</html>
 
 {% endblock %}
