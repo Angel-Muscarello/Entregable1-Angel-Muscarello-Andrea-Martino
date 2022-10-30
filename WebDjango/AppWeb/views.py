@@ -182,7 +182,7 @@ class ListCurso(LoginRequiredMixin, ListView):
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "model": Curso.objects.all()
+                "cursos": Curso.objects.all()
                 }
         else:
             contexto = {}
@@ -200,7 +200,7 @@ class ListEntregable(LoginRequiredMixin, ListView):
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "model": Curso.objects.all()
+                "entregables": Entregable.objects.all()
                 }
         else:
             contexto = {}
@@ -217,7 +217,7 @@ class ListEstudiante(LoginRequiredMixin, ListView):
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "model": Curso.objects.all()
+                "estudiantes": Estudiante.objects.all()
                 }
         else:
             contexto = {}
@@ -234,7 +234,7 @@ class ListProfesor(LoginRequiredMixin, ListView):
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "model": Curso.objects.all()
+                "profesores": Profesor.objects.all()
                 }
         else:
             contexto = {}
