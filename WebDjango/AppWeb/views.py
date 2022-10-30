@@ -16,16 +16,17 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
-#<img src="{{ url }}" width="40" height="40" />
-#                <p class="text-muted small mb-4 mb-lg-0">{{user.username}}</p>
+
 @login_required
 def inicio(request):
+    
     avatar = Avatar.objects.filter(user=request.user).first()
+    
     contexto = {
         "avatar": avatar.imagen.url
     }
 
-    return render(request, "AppWeb/padre.html", contexto)
+    return render(request, "AppWeb/padre.html",contexto)
 
 @login_required
 def PedirDatosCurso(request):
