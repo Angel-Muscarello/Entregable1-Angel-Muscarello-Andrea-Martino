@@ -151,7 +151,6 @@ def editarPerfil(request):
             user.save()
             return render(request, "AppWeb/padre.html", {"avatar": avatar.imagen.url})
             #return redirect("Padre")
- 
     return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user, "avatar": avatar.imagen.url})
 
 #--AVATAR
@@ -247,20 +246,18 @@ class ListProfesor(LoginRequiredMixin, ListView):
 class DetailCurso(LoginRequiredMixin, DetailView):
     model = Curso
     template_name = "AppWeb/detialCurso.html"
-    # avatar = Avatar.objects.filter(user=request(user)).first()
     
-    # def get_context_data(self):
-    #     avatar = Avatar.objects.filter(user=self.request.user).first()
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
     
-    #     if avatar is not None:
-    #         contexto = {
-    #             "avatar": avatar.imagen.url,
-    #             "object": self.get_context_data(object=self.object)
-    #             }
-    #     else:
-    #         contexto = {}
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url
+                 }
+        else:
+            contexto = {}
 
-    #     return contexto
+        return contexto
 
 
 class DetailEntregable(LoginRequiredMixin, DetailView):
