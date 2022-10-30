@@ -1,6 +1,7 @@
 from contextlib import redirect_stderr
 from email.mime import image
 from multiprocessing import context
+from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
@@ -31,6 +32,8 @@ def inicio(request):
         contexto = {}
 
     return render(request, "AppWeb/padre.html",contexto)
+    
+    
 
 @login_required
 def PedirDatosCurso(request):
@@ -171,20 +174,49 @@ def agregarAvatar(request):
 #CLASS IN VIEWS
 
 class ListCurso(LoginRequiredMixin, ListView):
+            
     model = Curso
     template_name = "AppWeb/listCursos.html"
+    # def get_context_data(self):
+    #     avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+    #     if avatar is not None:
+    #         contexto = {
+    #             "avatar": avatar.imagen.url
+    #         }
+    #     else:
+    #         contexto = {}
+
+    #     return contexto
+
+    
 
 class ListEntregable(LoginRequiredMixin, ListView):
+    
     model = Entregable
     template_name = "AppWeb/listEntregables.html"
+    
 
 class ListEstudiante(LoginRequiredMixin, ListView):
     model = Estudiante
     template_name = "AppWeb/listEstudiantes.html"
 
+    
 class ListProfesor(LoginRequiredMixin, ListView):
     model = Profesor
     template_name = "AppWeb/listProfesores.html"
+
+    # def get_context_data(self):
+    #     avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+    #     if avatar is not None:
+    #         contexto = {
+    #             "avatar": avatar.imagen.url
+    #         }
+    #     else:
+    #         contexto = {}
+
+    #     return contexto
 
 #CLASS DETALLE in views
 
