@@ -17,14 +17,18 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 
+
 @login_required
 def inicio(request):
     
     avatar = Avatar.objects.filter(user=request.user).first()
     
-    contexto = {
-        "avatar": avatar.imagen.url
-    }
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
 
     return render(request, "AppWeb/padre.html",contexto)
 
