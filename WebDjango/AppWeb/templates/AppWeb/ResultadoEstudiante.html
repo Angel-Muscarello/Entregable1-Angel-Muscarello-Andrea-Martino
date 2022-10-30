@@ -16,29 +16,26 @@
                 <div class="text-center text-white">
                     <!-- Page heading-->
                     <h1 class="mb-5">Estudiante</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Estudiante</p>
-                    </FONT>
                     
+                    {% if estudiantes_encontrados %}
+
+                    <ul>
+                        {% for estudiante in estudiantes_encontrados %}
+                            <li>Nombre: {{estudiante.nombre}}</li>
+                            <li>Apellido:{{estudiante.apellido}}</li>
+                            <li>Emial: {{estudiante.email}}</li>
+                        {% endfor%}
+                    </ul>
+                    {% else %}
+                    
+                        <h4>No se encontraro datos</h4>
+
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </header>
-{% if not objets in estudiantes_encontrados %}
-    <p>No se encontraron resultados</p>
-{% endif %}
 
-{% if estudiantes_encontrados %}
-
-<ul>
-    {% for estudiante in estudiantes_encontrados %}
-        <li>Nombre: {{estudiante.nombre}}</li>
-        <li>Apellido:{{estudiante.apellido}}</li>
-        <li>Emial: {{estudiante.email}}</li>
-    {% endfor%}
-</ul>
-
-{% endif %}
 
 {% endblock %}

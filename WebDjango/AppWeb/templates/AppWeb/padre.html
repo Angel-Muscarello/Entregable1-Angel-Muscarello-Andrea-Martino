@@ -22,18 +22,23 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 {% if request.user.is_authenticated %}
-                <a class="navbar-brand" href="{% url 'Padre' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'listCurso' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'listEntregable' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'listEstudiante' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'listProfesor' %}">Profesores</a>
-                <a class="narbar-brand" href="{% url 'Formulario' %}">Formularios</a>
-                <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
-                <a class="btn btn-primary" href="{% url 'EditarPerfil' %}">Perfil</a>
+                    <a class="navbar-brand" href="{% url 'Padre' %}">Inicio</a>
+                    <a class="navbar-brand" href="{% url 'listCurso' %}">Cursos</a>
+                    <a class="navbar-brand" href="{% url 'listEntregable' %}">Entregables</a>
+                    <a class="navbar-brand" href="{% url 'listEstudiante' %}">Estudiantes</a>
+                    <a class="navbar-brand" href="{% url 'listProfesor' %}">Profesores</a>
+                    <a class="narbar-brand" href="{% url 'Formulario' %}">Formularios</a>
+                    <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
+                    <a class="btn btn-primary" href="{% url 'EditarPerfil' %}">Perfil</a>
+                    <a class="btn btn-primary" href="{% url 'agregarAvatar' %}">Avatar</a>
+                    {% if avatar %}
+                        <img height="40px" src="{{ avatar }}"/>
+                    {% endif %}
+                    <p class="text-muted small mb-4 mb-lg-0">{{user.username}}</p>
                 {% endif%}
                 {% if not request.user.is_authenticated %}
-                <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
-                <a class="btn btn-primary" href="{% url 'Register' %}">Crear Usuario</a>
+                    <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                    <a class="btn btn-primary" href="{% url 'Register' %}">Crear Usuario</a>
                 {% endif%}
             </div>
         </nav>

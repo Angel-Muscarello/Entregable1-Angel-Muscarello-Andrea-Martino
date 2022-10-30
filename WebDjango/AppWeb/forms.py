@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from AppWeb.models import Avatar
 
 class CursoForm(forms.Form):
     nombre = forms.CharField(max_length=40)
@@ -44,4 +44,13 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ["email", "password1", "password2", "first_name", "last_name"]
 
-        
+
+#AVATAR
+
+class AvatarForm(forms.ModelForm):
+
+    imagen = forms.ImageField()
+
+    class Meta:
+        model = Avatar
+        fields = ["imagen", "user"]

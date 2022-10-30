@@ -1,20 +1,31 @@
+from contextlib import redirect_stderr
+from email.mime import image
+from multiprocessing import context
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from AppWeb.models import Curso, Entregable, Estudiante, Profesor
+from AppWeb.models import Curso, Entregable, Estudiante, Profesor, Avatar
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from AppWeb.forms import UserEditForm
+from AppWeb.forms import UserEditForm, AvatarForm
 from django.contrib.auth.mixins import LoginRequiredMixin #Permiten restrigir las views (clases) a no usuarios...
 from django.contrib.auth.decorators import login_required #Permiten restrigir las views (funciones) a no usuarios...
+from django.contrib.auth.models import User
+
 
 # Create your views here.
-
+#<img src="{{ url }}" width="40" height="40" />
+#                <p class="text-muted small mb-4 mb-lg-0">{{user.username}}</p>
 @login_required
 def inicio(request):
-    return render(request, "AppWeb/padre.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    contexto = {
+        "avatar": avatar.imagen.url
+    }
+
+    return render(request, "AppWeb/padre.html", contexto)
 
 @login_required
 def PedirDatosCurso(request):
@@ -113,11 +124,13 @@ def register(request):
 #--EDIT-PROFILE
 @login_required   
 def editarPerfil(request):
+
     user = request.user
-    
+    avatar = Avatar.objects.filter(user=request.user).first()
+
     if request.method != "POST":
         formulario =  UserEditForm(initial={"email":user.email})
-    
+        
     else:
         formulario =  UserEditForm(request.POST)
         if formulario.is_valid():
@@ -128,9 +141,25 @@ def editarPerfil(request):
             user.password1 = informacion["password1"]
             user.password2 = informacion["password2"]
             user.save()
+            return render(request, "AppWeb/padre.html", {"avatar": avatar.imagen.url})
+            #return redirect("Padre")
+   
+    return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user, "avatar": avatar.imagen.url})
+
+#--AVATAR
+@login_required   
+def agregarAvatar(request):
+    
+    if request.method != "POST":
+        formulario = AvatarForm()
+    else:
+        formulario = AvatarForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            Avatar.objects.filter(user=request.user).delete()
+            formulario.save()
             return render(request, "AppWeb/padre.html")
 
-    return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user})
+    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario})
 
 
 #CLASS LISTVIEW

@@ -25,7 +25,10 @@ urlpatterns = [
 
 #--EDIT-PROFILE
   path("editarPerfil", editarPerfil, name="EditarPerfil"),
-  
+
+#--AVATAR
+  path("agregarAvatar", agregarAvatar, name="agregarAvatar"),
+ 
 #----LOGIN---LOGOUT,  AUTHENTICATE
   path("login", MyLogin.as_view(), name="Login"),
   path("logout", MyLogout.as_view(), name="Logout"),

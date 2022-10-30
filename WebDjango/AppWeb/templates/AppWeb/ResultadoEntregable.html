@@ -16,28 +16,24 @@
                 <div class="text-center text-white">
                     <!-- Page heading-->
                     <h1 class="mb-5">Entregable</h1>
-                    <FONT FACE="impact" SIZE=6 COLOR="white">
-                        <p class="mb-5">Espacio de Entregable</p>
-                    </FONT>
+
+                    {% if entreglables_encontrados %}
+
+                    <ul>
+                        {% for entregable in entreglables_encontrados %}
+                        <li>Nombre: {{entregable.nombre}}</li>
+                        <li>Fecha de entrega:{{entregable.fecha_de_entrega}}</li>
+                        {% endfor%}
+                    </ul>
+                    {% else %}
+
+                        <h4>No se encontraro datos</h4>
+
+                    {% endif %}
                     
                 </div>
             </div>
         </div>
     </div>
 </header>
-{% if not objets in entreglables_encontrados %}
-    <p>No se encontraron resultados</p>
-{% endif %}
-
-{% if entreglables_encontrados %}
-
-<ul>
-    {% for entregable in entreglables_encontrados %}
-        <li>Nombre: {{entregable.nombre}}</li>
-        <li>Fecha de entrega:{{entregable.fecha_de_entrega}}</li>
-    {% endfor%}
-</ul>
-
-{% endif %}
-
 {% endblock %}
