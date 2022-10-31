@@ -15,8 +15,8 @@
                 <div class="col-xl-6">
                     <div class="text-center text-white">
                         <!-- Page heading-->
-                        <h1 class="mb-5">Nombre: {{ object.nombre }}</h1>
-                        <h1 class="mb-5">Camada: {{ object.camada }}</h1>
+                        <h1 class="mb-5">Nombre: {{ curso.nombre }}</h1>
+                        <h1 class="mb-5">Camada: {{ curso.camada }}</h1>
                         <form method="post">{% csrf_token %}
                             Quieres borrar el curso?
                             <input class="btn btn-primary" type="submit" value="Borrar" />

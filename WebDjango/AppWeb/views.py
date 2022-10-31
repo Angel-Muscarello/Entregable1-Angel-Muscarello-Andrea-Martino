@@ -1,4 +1,5 @@
 from contextlib import redirect_stderr
+from dataclasses import field, fields
 from email.mime import image
 from multiprocessing import context
 from urllib import request
@@ -37,83 +38,157 @@ def inicio(request):
 
 @login_required
 def PedirDatosCurso(request):
-    return render(request, "AppWeb/PedirDatosCurso.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+    return render(request, "AppWeb/PedirDatosCurso.html", contexto)
 
 @login_required
 def buscarCurso(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
     if not request.GET["camada"]:
         respuesta = "No se enviaron datos"
         return HttpResponse(respuesta)
     else:
         camada_a_bucar = request.GET["camada"]
         curso = Curso.objects.filter(camada=camada_a_bucar)
-        contexto = {
-            "cursos_encontrados":curso, 
-            "camada":camada_a_bucar
-        }
+        if avatar is not None:
+            contexto = {
+                "cursos_encontrados":curso, 
+                "camada":camada_a_bucar,
+                "avatar": avatar.imagen.url
+            }
+        else:
+            contexto = {
+                "cursos_encontrados":curso, 
+                "camada":camada_a_bucar
+            }
 
         return render(request, "AppWeb/ResultadoCurso.html", context= contexto)
 
 @login_required 
 def PedirDatosEstudiante(request):
-    return render(request, "AppWeb/PedirDatosEstudiante.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+    return render(request, "AppWeb/PedirDatosEstudiante.html", contexto)
 
 @login_required
 def buscarEstudiante(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
     if not request.GET["apellido"]:
         respuesta = "No se enviaron datos"
         return HttpResponse(respuesta)
     else:
         estudiante_a_bucar = request.GET["apellido"]
         estudiante = Estudiante.objects.filter(apellido=estudiante_a_bucar)
-        contexto = {
-            "estudiantes_encontrados":estudiante, 
-            "apellido":estudiante_a_bucar
-        }
+        if avatar is not None:
+            contexto = {
+                "estudiantes_encontrados":estudiante, 
+                "apellido":estudiante_a_bucar,
+                "avatar": avatar.imagen.url
+            }
+        else:
+            contexto = {
+                "estudiantes_encontrados":estudiante, 
+                "apellido":estudiante_a_bucar
+            }
 
         return render(request, "AppWeb/ResultadoEstudiante.html", context= contexto)
    
 @login_required
 def PedirDatosEntregable(request):
-    return render(request, "AppWeb/PedirDatosEntregable.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+    return render(request, "AppWeb/PedirDatosEntregable.html", contexto)
 
 @login_required
 def buscarEntregable(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
     if not request.GET["nombre"]:
         respuesta = "No se enviaron datos"
         return HttpResponse(respuesta)
     else:
         entreglable_a_bucar = request.GET["nombre"]
         entregable = Entregable.objects.filter(nombre= entreglable_a_bucar)
-        contexto = {
-            "entreglables_encontrados":entregable, 
-            "nombre":entreglable_a_bucar
-        }
+        if avatar is not None:
+            contexto = {
+                "entreglables_encontrados":entregable, 
+                "nombre":entreglable_a_bucar,
+                "avatar": avatar.imagen.url
+            }
+        else:
+            contexto = {
+                "entreglables_encontrados":entregable, 
+                "nombre":entreglable_a_bucar
+            }
 
         return render(request, "AppWeb/ResultadoEntregable.html", context= contexto)
 
 @login_required
 def PedirDatosProfesor(request):
-    return render(request, "AppWeb/PedirDatosProfesor.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+    return render(request, "AppWeb/PedirDatosProfesor.html", contexto)
 
 @login_required
 def buscarProfesor(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
     if not request.GET["apellido"]:
         respuesta = "No enviaste datos"
         return HttpResponse(respuesta)
     else:
         profesor_a_bucar = request.GET["apellido"]
         profesor = Profesor.objects.filter(apellido=profesor_a_bucar)
-        contexto = {
-            "profesores_encontrados":profesor, 
-            "apellido":profesor_a_bucar
+        if avatar is not None:
+            contexto = {
+                "profesores_encontrados":profesor, 
+                "apellido":profesor_a_bucar,
+                "avatar": avatar.imagen.url
+            }
+        else:
+            contexto = {
+                "profesores_encontrados":profesor, 
+                "apellido":profesor_a_bucar
         }
 
-        return render(request, "AppWeb/ResultadoProfesor.html", context= contexto)
+        return render(request, "AppWeb/ResultadoProfesor.html", contexto)
 
 @login_required   
 def formularios(request):
-    return render(request, "AppWeb/formularios.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+
+    return render(request, "AppWeb/formularios.html", contexto)
 
 #--REGISTER
 def register(request):
@@ -245,6 +320,7 @@ class ListProfesor(LoginRequiredMixin, ListView):
 
 class DetailCurso(LoginRequiredMixin, DetailView):
     model = Curso
+    
     template_name = "AppWeb/detialCurso.html"
     
     def get_context_data(self, object):
@@ -252,7 +328,8 @@ class DetailCurso(LoginRequiredMixin, DetailView):
     
         if avatar is not None:
              contexto = {
-                 "avatar": avatar.imagen.url
+                 "avatar": avatar.imagen.url,
+                 "curso": object
                  }
         else:
             contexto = {}
@@ -263,14 +340,50 @@ class DetailCurso(LoginRequiredMixin, DetailView):
 class DetailEntregable(LoginRequiredMixin, DetailView):
     model = Entregable
     template_name = "AppWeb/detailEntregable.html"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "entregable": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto
 
 class DetailEstudiante(LoginRequiredMixin, DetailView):
     model = Estudiante
     template_name = "AppWeb/detailEstudiante.html"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "estudiante": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto
 
 class DetailProfesor(LoginRequiredMixin, DetailView):
     model = Profesor
     template_name = "AppWeb/detailProfesor.html"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "profesor": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto
 
 #CLASS CREATE in views
 
@@ -278,6 +391,7 @@ class CreateCurso(LoginRequiredMixin, CreateView):
     model = Curso
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
+    
 
 class CreateEntregable(LoginRequiredMixin, CreateView):
     model = Entregable
@@ -301,7 +415,7 @@ class UpdateCurso(LoginRequiredMixin, UpdateView):
     model = Curso
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
-
+    
 class UpdateEntregable(LoginRequiredMixin, UpdateView):
     model = Entregable
     success_url = "/AppWeb/listEntregable"
@@ -323,18 +437,66 @@ class DeleteCurso(LoginRequiredMixin, DeleteView):
     model = Curso
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "curso": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto   
 
 class DeleteEntregable(LoginRequiredMixin, DeleteView):
     model = Entregable
     success_url = "/AppWeb/listEntregable"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "entregable": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto   
 
 class DeleteEstudiante(LoginRequiredMixin, DeleteView):
     model = Estudiante
     success_url = "/AppWeb/listEstudiante"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "estudiante": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto   
 
 class DeleteProfesor(LoginRequiredMixin, DeleteView):
     model = Profesor
     success_url = "/AppWeb/listProfesor"
+    def get_context_data(self, object):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+    
+        if avatar is not None:
+             contexto = {
+                 "avatar": avatar.imagen.url,
+                 "profesor": object
+                 }
+        else:
+            contexto = {}
+
+        return contexto   
 
 #---LOGIN---LOGOUT---
 
