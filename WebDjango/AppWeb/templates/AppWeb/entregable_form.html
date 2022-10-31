@@ -16,9 +16,8 @@
                 <div class="text-center text-white">
                     <!-- Page heading-->
                     <h1 class="mb-5">Entregable</h1>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p}}
+                    <form method="POST">{% csrf_token %}
+                        {{ form.as_p }}
                         <input class="btn btn-primary" type="submit" value="Guardar" />
                     </form>
                 </div>

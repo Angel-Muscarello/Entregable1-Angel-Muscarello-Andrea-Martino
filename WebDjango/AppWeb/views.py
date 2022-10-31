@@ -1,3 +1,4 @@
+from audioop import reverse
 from contextlib import redirect_stderr
 from dataclasses import field, fields
 from email.mime import image
@@ -12,9 +13,8 @@ from AppWeb.models import Curso, Entregable, Estudiante, Profesor, Avatar
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from AppWeb.forms import UserEditForm, AvatarForm
-from django.contrib.auth.mixins import LoginRequiredMixin #Permiten restrigir las views (clases) a no usuarios...
-from django.contrib.auth.decorators import login_required #Permiten restrigir las views (funciones) a no usuarios...
-from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.decorators import login_required 
 
 
 # Create your views here.
@@ -336,7 +336,6 @@ class DetailCurso(LoginRequiredMixin, DetailView):
 
         return contexto
 
-
 class DetailEntregable(LoginRequiredMixin, DetailView):
     model = Entregable
     template_name = "AppWeb/detailEntregable.html"
@@ -391,7 +390,15 @@ class CreateCurso(LoginRequiredMixin, CreateView):
     model = Curso
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
-    
+
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
 
 class CreateEntregable(LoginRequiredMixin, CreateView):
     model = Entregable
@@ -403,10 +410,28 @@ class CreateEstudiante(LoginRequiredMixin, CreateView):
     success_url = "/AppWeb/listEstudiante"
     fields = ["nombre", "apellido", "email"]
 
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
+
 class CreateProfesor(LoginRequiredMixin, CreateView):
     model = Profesor
     success_url = "/AppWeb/listProfesor"
     fields = ["nombre", "apellido", "profesion", "email"]
+
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
 
 
 #Class UPDATE
@@ -416,20 +441,58 @@ class UpdateCurso(LoginRequiredMixin, UpdateView):
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
     
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
+
+
 class UpdateEntregable(LoginRequiredMixin, UpdateView):
     model = Entregable
     success_url = "/AppWeb/listEntregable"
     fields = ["nombre", "fecha_de_entrega"]
+
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
 
 class UpdateEstudiante(LoginRequiredMixin, UpdateView):
     model = Estudiante
     success_url = "/AppWeb/listEstudiante"
     fields = ["nombre", "apellido", "email"]
 
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
+    
+
 class UpdateProfesor(LoginRequiredMixin, UpdateView):
     model = Profesor
     success_url = "/AppWeb/listProfesor"
     fields = ["nombre", "apellido", "profesion", "email"]
+
+    def get_context_data(self, **kwargs):
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url  
+        else:
+            contexto["avatar"] = None
+        return contexto 
 
 #CLASS DELETE
 
