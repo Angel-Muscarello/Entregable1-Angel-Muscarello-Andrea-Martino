@@ -15,6 +15,7 @@ from django.contrib.auth.forms import UserCreationForm
 from AppWeb.forms import UserEditForm, AvatarForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -224,14 +225,14 @@ def editarPerfil(request):
             user.password1 = informacion["password1"]
             user.password2 = informacion["password2"]
             user.save()
-            return render(request, "AppWeb/padre.html", {"avatar": avatar.imagen.url})
-            #return redirect("Padre")
+            return redirect("Padre")
     return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user, "avatar": avatar.imagen.url})
 
 #--AVATAR
 @login_required   
 def agregarAvatar(request):
-    
+    avatar = Avatar.objects.filter(user=request.user).first()
+
     if request.method != "POST":
         formulario = AvatarForm()
     else:
@@ -239,9 +240,9 @@ def agregarAvatar(request):
         if formulario.is_valid():
             Avatar.objects.filter(user=request.user).delete()
             formulario.save()
-            return render(request, "AppWeb/padre.html")
-
-    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario})
+            # return render(request, "AppWeb/padre.html")
+            return redirect("Padre")
+    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": avatar.imagen.url})
 
 
 #CLASS LISTVIEW

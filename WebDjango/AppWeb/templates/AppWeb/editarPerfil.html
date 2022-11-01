@@ -10,7 +10,7 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">                       
                     <h1 class="mb-5">Editar Perfil</h1>
-                    <h1 class="mb-5">Usuario: {{user}} {{avatar}}</h1>
+                    <h1 class="mb-5">Usuario: {{user}}</h1>
                     <form action="" method="POST">{% csrf_token %}
                         <table>
                             {{formulario.as_table}}
