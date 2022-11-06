@@ -22,6 +22,20 @@ from django.contrib.auth.models import User
 
 
 @login_required
+def acercaDeMi(request):
+    
+    avatar = Avatar.objects.filter(user=request.user).first()
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+
+    return render(request, "AppWeb/acercaDeMi.html",contexto)
+    
+@login_required
 def inicio(request):
     
     avatar = Avatar.objects.filter(user=request.user).first()
@@ -34,8 +48,6 @@ def inicio(request):
         contexto = {}
 
     return render(request, "AppWeb/padre.html",contexto)
-    
-    
 
 @login_required
 def PedirDatosCurso(request):

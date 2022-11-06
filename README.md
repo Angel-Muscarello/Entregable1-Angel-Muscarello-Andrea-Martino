@@ -53,6 +53,14 @@
         <li>Formularios: dispone de 'formularios.html' que te da las opciones de la info que queres buscar, llamase, 'BD-CLASE'</li>
     </p>
 
+<h2>Nota</h2>
+    <p>Se agregaron unos botones desplegables:
+        <li>El primero, llamado "Mas Opciones", donde tengras las vistas del Logaut, Avatar, Perfil</li>
+        <li>La segunda, accedes desde la vista "Formulario", donde veraz 2 desplegables, uno para buscar informacion en la base de datos y el otro para cargar datos a la misma</li>
+    </p>
+    
+
+
 
 
 

@@ -20,6 +20,7 @@ urlpatterns = [
   path("pedirDatosEstudiante", PedirDatosEstudiante, name="DatosdeEstudiantes"),
   path("pedirDatosEntregable", PedirDatosEntregable, name="DatosdeEntregables"),
   path("pedirDatosProfesor", PedirDatosProfesor, name="DatosdeProfesores"),
+  path("acercaDeMi", acercaDeMi, name="acercaDeMi"),
 
 #--REGISTER
   path("register", register, name="Register"),
