@@ -21,7 +21,9 @@
     <p>
 
 <h1 align="center">Descripcion</h1>
-
+<p>
+    Podras notar que en el nombre del proyecto en github sale mi nombre y el de otra integrante 'Andrea Martino'. No lo he podido eliminar, para evitar algun posible error entre la conexion de proyecto en mi pc y el de git. Pero Esta persona no estuvo, ni se preocupo, de ninguna de las instancias de este entregable
+</p>
 <p>
     Veraz que dispones de una pagina de inicio(padre.html), 4 paginas de clase por cada clase creada donde podes cargar informacion nueva a la BD de SQLlite y por ultimo una pagina de 'Formularios' donde tenes 4 opciones de cada clase para buscar datos
 
