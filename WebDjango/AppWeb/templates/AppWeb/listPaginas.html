@@ -1,0 +1,92 @@
+{% extends "AppWeb/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+    
+    {% if formulario.errors %}
+    
+    <p style="color: red;">Estan mal los datos</p>
+
+    {% endif %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">                       
+                    <h1 class="mb-5">Paginas de la Web</h1>
+                </div>
+            </div>
+        </div>
+    </div>    
+</header>
+<ul>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'Padre' %}">Inicio</a>
+        <p>PAGINA PRINCIPAL</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'listCurso' %}">Cursos</a>
+        <p>Listado de Cursos Cargados, con su respectivo CRUD   </p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'listEntregable' %}">Entregables</a>
+        <p>Listado de Entregables Cargados, con su respectivo CRUD  </p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'listEstudiante' %}">Estudiantes</a>
+        <p>Listado de Estudiantes Cargados, con su respectivo CRUD  </p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'listProfesor' %}">Profesores</a>
+        <p>Listado de Profesores Cargados, con su respectivo CRUD</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'Formulario' %}">Formularios</a>
+        <p>Formularios de carga y de busqueda en SQLlite</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'EditarPerfil' %}">Perfil</a>
+        <p>Permite editar el perfil del usuario</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'agregarAvatar' %}">Avatar</a>
+        <p>Permite cargar un avatar del usuario</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'Logout' %}">Logout</a>
+        <p>Deriva la cerrar secion logeada</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'admin' %}">admin</a>
+        <p>Te redirecciona a Django admin</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'Login' %}">Login</a>
+        <p>Permite iniciar sesion si ya tienes creado un usuario</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'Register' %}">Crear Usuario</a>
+        <p>Crear un usuario</p>
+    </li>
+    <li>
+        <a class="btn btn-secondary" href="{% url 'admin' %}">admin</a>
+        <p>Formularios de carga y de busqueda en SQLlite</p>
+    </li>
+    
+    
+        
+        
+    
+    
+    
+    
+    
+        
+
+    
+    
+</ul>
+
+
+{% endblock %}

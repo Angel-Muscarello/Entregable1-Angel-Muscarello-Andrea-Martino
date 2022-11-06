@@ -1,7 +1,6 @@
 from django.urls import path
 from AppWeb.views import *
 
-
 urlpatterns = [
 #Ventanas de la pagina
 
@@ -21,6 +20,9 @@ urlpatterns = [
   path("pedirDatosEntregable", PedirDatosEntregable, name="DatosdeEntregables"),
   path("pedirDatosProfesor", PedirDatosProfesor, name="DatosdeProfesores"),
   path("acercaDeMi", acercaDeMi, name="acercaDeMi"),
+  path("admin", admin, name="admin"),
+  path("listPaginas", listPaginas, name="listPaginas"),
+  
 
 #--REGISTER
   path("register", register, name="Register"),
@@ -65,3 +67,5 @@ urlpatterns = [
   path(r'^estudianteDelete/(?P<pk>)\d+)$', DeleteEstudiante.as_view(), name="estudianteDelete"),
   path(r'^profesorDelete/(?P<pk>)\d+)$', DeleteProfesor.as_view(), name="profesorDelete"),
 ]
+
+

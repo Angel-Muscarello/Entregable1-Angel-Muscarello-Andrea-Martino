@@ -1,3 +1,5 @@
+from email.mime import image
+from email.policy import default
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -33,24 +35,32 @@ class ProfesorForm(forms.Form):
 
 
 #CLASS EDIT USER
+class AvatarForm(forms.ModelForm):
+
+    imagen = forms.ImageField(required=False)
+
+    class Meta:
+        model = Avatar
+        fields = ["imagen", "user"]
+
 class UserEditForm(UserCreationForm):
     email = forms.EmailField(label="Editar Email")
     password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput)
     last_name = forms.CharField(label="Apellido")
     first_name = forms.CharField(label="Nombre")
-
     class Meta:
         model = User
         fields = ["email", "password1", "password2", "first_name", "last_name"]
 
 
-#AVATAR
-
-class AvatarForm(forms.ModelForm):
-
-    imagen = forms.ImageField()
-
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(label="Editar Email")
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Repetir Contraseña", widget=forms.PasswordInput)
+    last_name = forms.CharField(label="Apellido")
+    first_name = forms.CharField(label="Nombre")
     class Meta:
-        model = Avatar
-        fields = ["imagen", "user"]
+        model = User
+        fields = ["username","email", "password1", "password2", "first_name", "last_name"]
+   

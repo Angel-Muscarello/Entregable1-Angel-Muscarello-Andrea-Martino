@@ -1,9 +1,3 @@
-from audioop import reverse
-from contextlib import redirect_stderr
-from dataclasses import field, fields
-from email.mime import image
-from multiprocessing import context
-from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
@@ -11,10 +5,10 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from AppWeb.models import Curso, Entregable, Estudiante, Profesor, Avatar
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
-from AppWeb.forms import UserEditForm, AvatarForm
+from AppWeb.forms import UserEditForm, AvatarForm, UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
 
 
@@ -34,7 +28,25 @@ def acercaDeMi(request):
         contexto = {}
 
     return render(request, "AppWeb/acercaDeMi.html",contexto)
+
+@login_required
+def listPaginas(request):
+    avatar = Avatar.objects.filter(user=request.user).first()
     
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+        contexto = {}
+
+    return render(request, "AppWeb/listPaginas.html",contexto)
+
+@staff_member_required
+def admin(request):
+    urll= "http://127.0.0.1:8000/admin/"
+    return redirect(urll)
+
 @login_required
 def inicio(request):
     
@@ -205,17 +217,17 @@ def formularios(request):
 
 #--REGISTER
 def register(request):
+
+
     if request.method =="POST":
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data["username"]
             form.save()
             return render(request, "AppWeb/confirmacion_registro.html", {"form":form})
     else:
-        form = UserCreationForm()
-    
+        form = UserRegisterForm()
     return render(request, "AppWeb/register.html", {"form":form})
-
+    
 
 #--EDIT-PROFILE
 @login_required   
@@ -244,7 +256,14 @@ def editarPerfil(request):
 @login_required   
 def agregarAvatar(request):
     avatar = Avatar.objects.filter(user=request.user).first()
+    if avatar:
+         contexto = {
+            "avatar": avatar.imagen.url
+        }
+    else:
+         contexto = {
 
+         }
     if request.method != "POST":
         formulario = AvatarForm()
     else:
@@ -252,9 +271,8 @@ def agregarAvatar(request):
         if formulario.is_valid():
             Avatar.objects.filter(user=request.user).delete()
             formulario.save()
-            # return render(request, "AppWeb/padre.html")
             return redirect("Padre")
-    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": avatar.imagen.url})
+    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": contexto})
 
 
 #CLASS LISTVIEW
