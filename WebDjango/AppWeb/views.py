@@ -9,8 +9,7 @@ from AppWeb.forms import UserEditForm, AvatarForm, UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.models import User
-
+from datetime import datetime
 
 # Create your views here.
 
@@ -49,33 +48,41 @@ def admin(request):
 
 @login_required
 def inicio(request):
-    
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
+        contexto = {
+            "fecha": fecha
+        }
 
     return render(request, "AppWeb/padre.html",contexto)
 
 @login_required
 def PedirDatosCurso(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
+        contexto = {
+            "fecha": fecha
+        }
     return render(request, "AppWeb/PedirDatosCurso.html", contexto)
 
 @login_required
 def buscarCurso(request):
     avatar = Avatar.objects.filter(user=request.user).first()
+    fecha = datetime.now()
     if not request.GET["camada"]:
         respuesta = "No se enviaron datos"
         return HttpResponse(respuesta)
@@ -86,30 +93,37 @@ def buscarCurso(request):
             contexto = {
                 "cursos_encontrados":curso, 
                 "camada":camada_a_bucar,
-                "avatar": avatar.imagen.url
+                "avatar": avatar.imagen.url,
+                "fecha": fecha
             }
         else:
             contexto = {
                 "cursos_encontrados":curso, 
-                "camada":camada_a_bucar
+                "camada":camada_a_bucar,
+                "fecha": fecha
             }
 
         return render(request, "AppWeb/ResultadoCurso.html", context= contexto)
 
 @login_required 
 def PedirDatosEstudiante(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
+        contexto = {
+            "fecha": fecha
+        }
     return render(request, "AppWeb/PedirDatosEstudiante.html", contexto)
 
 @login_required
 def buscarEstudiante(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     if not request.GET["apellido"]:
         respuesta = "No se enviaron datos"
@@ -121,30 +135,37 @@ def buscarEstudiante(request):
             contexto = {
                 "estudiantes_encontrados":estudiante, 
                 "apellido":estudiante_a_bucar,
-                "avatar": avatar.imagen.url
+                "avatar": avatar.imagen.url,
+                "fecha": fecha
             }
         else:
             contexto = {
                 "estudiantes_encontrados":estudiante, 
-                "apellido":estudiante_a_bucar
+                "apellido":estudiante_a_bucar,
+                "fecha": fecha
             }
 
         return render(request, "AppWeb/ResultadoEstudiante.html", context= contexto)
    
 @login_required
 def PedirDatosEntregable(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
+        contexto = {
+            "fecha": fecha
+        }
     return render(request, "AppWeb/PedirDatosEntregable.html", contexto)
 
 @login_required
 def buscarEntregable(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     if not request.GET["nombre"]:
         respuesta = "No se enviaron datos"
@@ -156,30 +177,37 @@ def buscarEntregable(request):
             contexto = {
                 "entreglables_encontrados":entregable, 
                 "nombre":entreglable_a_bucar,
-                "avatar": avatar.imagen.url
+                "avatar": avatar.imagen.url,
+                "fecha": fecha
             }
         else:
             contexto = {
                 "entreglables_encontrados":entregable, 
-                "nombre":entreglable_a_bucar
+                "nombre":entreglable_a_bucar,
+                "fecha": fecha
             }
 
         return render(request, "AppWeb/ResultadoEntregable.html", context= contexto)
 
 @login_required
 def PedirDatosProfesor(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
+        contexto = {
+            "fecha": fecha
+        }
     return render(request, "AppWeb/PedirDatosProfesor.html", contexto)
 
 @login_required
 def buscarProfesor(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if not request.GET["apellido"]:
@@ -192,27 +220,32 @@ def buscarProfesor(request):
             contexto = {
                 "profesores_encontrados":profesor, 
                 "apellido":profesor_a_bucar,
-                "avatar": avatar.imagen.url
+                "avatar": avatar.imagen.url,
+                "fecha": fecha
             }
         else:
             contexto = {
                 "profesores_encontrados":profesor, 
-                "apellido":profesor_a_bucar
+                "apellido":profesor_a_bucar,
+                "fecha": fecha
         }
 
         return render(request, "AppWeb/ResultadoProfesor.html", contexto)
 
 @login_required   
 def formularios(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-        contexto = {}
-
+        contexto = {
+            "fecha": fecha
+        }
     return render(request, "AppWeb/formularios.html", contexto)
 
 #--REGISTER
@@ -232,7 +265,7 @@ def register(request):
 #--EDIT-PROFILE
 @login_required   
 def editarPerfil(request):
-
+    fecha = datetime.now()
     user = request.user
     avatar = Avatar.objects.filter(user=request.user).first()
 
@@ -250,20 +283,23 @@ def editarPerfil(request):
             user.password2 = informacion["password2"]
             user.save()
             return redirect("Padre")
-    return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "user":user, "avatar": avatar.imagen.url})
+    return render(request, "AppWeb/editarPerfil.html", {"formulario":formulario, "fecha": fecha, "user":user, "avatar": avatar.imagen.url})
 
 #--AVATAR
 @login_required   
 def agregarAvatar(request):
+    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
-    if avatar:
-         contexto = {
-            "avatar": avatar.imagen.url
+    
+    if avatar is not None:
+        contexto = {
+            "avatar": avatar.imagen.url,
+            "fecha": fecha
         }
     else:
-         contexto = {
-
-         }
+        contexto = {
+            "fecha": fecha
+        }
     if request.method != "POST":
         formulario = AvatarForm()
     else:
@@ -272,7 +308,7 @@ def agregarAvatar(request):
             Avatar.objects.filter(user=request.user).delete()
             formulario.save()
             return redirect("Padre")
-    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": contexto})
+    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": avatar.imagen.url, "fecha": fecha})
 
 
 #CLASS LISTVIEW
@@ -283,33 +319,42 @@ class ListCurso(LoginRequiredMixin, ListView):
     model = Curso
     template_name = "AppWeb/listCursos.html"
     def get_context_data(self):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "cursos": Curso.objects.all()
+                "cursos": Curso.objects.all(),
+                "fecha": fecha
                 }
         else:
-            contexto = {}
+            contexto = {
+                "cursos": Curso.objects.all(),
+                "fecha": fecha
+            }
 
         return contexto
 
 class ListEntregable(LoginRequiredMixin, ListView):
-    
     model = Entregable
     template_name = "AppWeb/listEntregables.html"
 
     def get_context_data(self):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "entregables": Entregable.objects.all()
+                "entregables": Entregable.objects.all(),
+                "fecha": fecha
                 }
         else:
-            contexto = {}
+            contexto = {
+                "entregables": Entregable.objects.all(),
+                "fecha": fecha
+            }
 
         return contexto
     
@@ -318,15 +363,20 @@ class ListEstudiante(LoginRequiredMixin, ListView):
     template_name = "AppWeb/listEstudiantes.html"
 
     def get_context_data(self):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "estudiantes": Estudiante.objects.all()
+                "estudiantes": Estudiante.objects.all(),
+                "fecha": fecha
                 }
         else:
-            contexto = {}
+            contexto = {
+                "estudiantes": Estudiante.objects.all(),
+                "fecha": fecha
+            }
 
         return contexto
     
@@ -335,15 +385,20 @@ class ListProfesor(LoginRequiredMixin, ListView):
     template_name = "AppWeb/listProfesores.html"
 
     def get_context_data(self):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
             contexto = {
                 "avatar": avatar.imagen.url,
-                "profesores": Profesor.objects.all()
+                "profesores": Profesor.objects.all(),
+                "fecha": fecha
                 }
         else:
-            contexto = {}
+            contexto = {
+                "profesores": Profesor.objects.all(),
+                "fecha": fecha
+            }
 
         return contexto
 
@@ -355,15 +410,20 @@ class DetailCurso(LoginRequiredMixin, DetailView):
     template_name = "AppWeb/detialCurso.html"
     
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "curso": object
+                 "curso": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "curso": object,
+                "fecha": fecha
+            }
 
         return contexto
 
@@ -371,15 +431,20 @@ class DetailEntregable(LoginRequiredMixin, DetailView):
     model = Entregable
     template_name = "AppWeb/detailEntregable.html"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "entregable": object
+                 "entregable": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "entregable": object,
+                "fecha": fecha
+            }
 
         return contexto
 
@@ -387,15 +452,20 @@ class DetailEstudiante(LoginRequiredMixin, DetailView):
     model = Estudiante
     template_name = "AppWeb/detailEstudiante.html"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "estudiante": object
+                 "estudiante": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "estudiante": object,
+                "fecha": fecha
+            }
 
         return contexto
 
@@ -403,15 +473,20 @@ class DetailProfesor(LoginRequiredMixin, DetailView):
     model = Profesor
     template_name = "AppWeb/detailProfesor.html"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "profesor": object
+                 "profesor": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "profesor": object,
+                "fecha": fecha
+            }
 
         return contexto
 
@@ -423,18 +498,34 @@ class CreateCurso(LoginRequiredMixin, CreateView):
     fields = ["nombre", "camada"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha
+            
         else:
             contexto["avatar"] = None
+            contexto["fecha"] = fecha
         return contexto 
 
 class CreateEntregable(LoginRequiredMixin, CreateView):
     model = Entregable
     success_url = "/AppWeb/listEntregable"
     fields = ["nombre", "fecha_de_entrega"]
+    def get_context_data(self, **kwargs):
+        fecha = datetime.now()
+        avatar = Avatar.objects.filter(user=self.request.user).first()
+        contexto = super().get_context_data(**kwargs)
+        if avatar is not None:
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha
+            
+        else:
+            contexto["avatar"] = None
+            contexto["fecha"] = fecha
+        return contexto 
 
 class CreateEstudiante(LoginRequiredMixin, CreateView):
     model = Estudiante
@@ -442,12 +533,16 @@ class CreateEstudiante(LoginRequiredMixin, CreateView):
     fields = ["nombre", "apellido", "email"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha
+            
         else:
             contexto["avatar"] = None
+            contexto["fecha"] = fecha
         return contexto 
 
 class CreateProfesor(LoginRequiredMixin, CreateView):
@@ -456,12 +551,16 @@ class CreateProfesor(LoginRequiredMixin, CreateView):
     fields = ["nombre", "apellido", "profesion", "email"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha
+            
         else:
             contexto["avatar"] = None
+            contexto["fecha"] = fecha
         return contexto 
 
 
@@ -473,12 +572,15 @@ class UpdateCurso(LoginRequiredMixin, UpdateView):
     fields = ["nombre", "camada"]
     
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha  
         else:
             contexto["avatar"] = None
+            contexto["fecha"] = fecha
         return contexto 
 
 
@@ -488,12 +590,15 @@ class UpdateEntregable(LoginRequiredMixin, UpdateView):
     fields = ["nombre", "fecha_de_entrega"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha  
         else:
             contexto["avatar"] = None
+            contexto["fecha"] = fecha
         return contexto 
 
 class UpdateEstudiante(LoginRequiredMixin, UpdateView):
@@ -502,13 +607,16 @@ class UpdateEstudiante(LoginRequiredMixin, UpdateView):
     fields = ["nombre", "apellido", "email"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha  
         else:
             contexto["avatar"] = None
-        return contexto 
+            contexto["fecha"] = fecha
+        return contexto  
     
 
 class UpdateProfesor(LoginRequiredMixin, UpdateView):
@@ -517,13 +625,16 @@ class UpdateProfesor(LoginRequiredMixin, UpdateView):
     fields = ["nombre", "apellido", "profesion", "email"]
 
     def get_context_data(self, **kwargs):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
         contexto = super().get_context_data(**kwargs)
         if avatar is not None:
-            contexto["avatar"] = avatar.imagen.url  
+            contexto["avatar"] = avatar.imagen.url
+            contexto["fecha"] = fecha  
         else:
             contexto["avatar"] = None
-        return contexto 
+            contexto["fecha"] = fecha
+        return contexto  
 
 #CLASS DELETE
 
@@ -532,15 +643,20 @@ class DeleteCurso(LoginRequiredMixin, DeleteView):
     success_url = "/AppWeb/listCurso"
     fields = ["nombre", "camada"]
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "curso": object
+                 "curso": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "curso": object,
+                "fecha": fecha
+            }
 
         return contexto   
 
@@ -548,15 +664,20 @@ class DeleteEntregable(LoginRequiredMixin, DeleteView):
     model = Entregable
     success_url = "/AppWeb/listEntregable"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "entregable": object
+                 "entregable": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "entregable": object,
+                "fecha": fecha
+            }
 
         return contexto   
 
@@ -564,15 +685,20 @@ class DeleteEstudiante(LoginRequiredMixin, DeleteView):
     model = Estudiante
     success_url = "/AppWeb/listEstudiante"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "estudiante": object
+                 "estudiante": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "estudiante": object,
+                "fecha": fecha
+            }
 
         return contexto   
 
@@ -580,15 +706,20 @@ class DeleteProfesor(LoginRequiredMixin, DeleteView):
     model = Profesor
     success_url = "/AppWeb/listProfesor"
     def get_context_data(self, object):
+        fecha = datetime.now()
         avatar = Avatar.objects.filter(user=self.request.user).first()
     
         if avatar is not None:
              contexto = {
                  "avatar": avatar.imagen.url,
-                 "profesor": object
+                 "profesor": object,
+                 "fecha": fecha
                  }
         else:
-            contexto = {}
+            contexto = {
+                "profesor": object,
+                "fecha": fecha
+            }
 
         return contexto   
 
