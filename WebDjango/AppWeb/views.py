@@ -288,18 +288,14 @@ def editarPerfil(request):
 #--AVATAR
 @login_required   
 def agregarAvatar(request):
-    fecha = datetime.now()
     avatar = Avatar.objects.filter(user=request.user).first()
     
     if avatar is not None:
         contexto = {
-            "avatar": avatar.imagen.url,
-            "fecha": fecha
+            "avatar": avatar.imagen.url 
         }
     else:
-        contexto = {
-            "fecha": fecha
-        }
+        contexto = {}
     if request.method != "POST":
         formulario = AvatarForm()
     else:
@@ -308,7 +304,7 @@ def agregarAvatar(request):
             Avatar.objects.filter(user=request.user).delete()
             formulario.save()
             return redirect("Padre")
-    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": avatar.imagen.url, "fecha": fecha})
+    return render(request, "AppWeb/agregarAvatar.html", {"form": formulario, "avatar": contexto})
 
 
 #CLASS LISTVIEW
